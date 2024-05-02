@@ -155,6 +155,26 @@ public:
     }
 };
 
+void displayStudentsByGender(Stack& stack, string gender) {
+    Node* temp = stack.top;
+    bool found = false;
+
+    if (stack.isEmpty()) {
+        cout << "Stack is empty." << endl;
+        return;
+    }
+    else{
+        while (temp != nullptr) {
+            if (temp->data.getGender() == gender) {
+                found = true;
+                cout << "Student Name: " << temp->data.getName() << ": Admission Number: FEE3/" << temp->key << "/2023:" << endl;
+            }
+            temp = temp->next;
+        }
+    }
+}
+
+
 
 int main() {
     Stack stack;
@@ -171,6 +191,7 @@ int main() {
         cout << "6. Show all students and their properties" << endl;
         cout << "7. Clear Screen" << endl;
         cout << "8. Generate 5 students and add them to the stack" << endl;
+        cout << "9. Find students of a particular gender" << endl;
         cin >> option;
         
         switch (option) {
@@ -308,6 +329,12 @@ int main() {
                 // Display all the students and their properties
                 stack.display();
             }
+            case 9: {
+                string gender;
+                cout << "Enter the gender of students you want to find (M or F): ";
+                cin >> gender;
+                displayStudentsByGender(stack, gender);
+            }    
             default:
                 cout << "Enter Proper Option number " << endl;
                 break;
@@ -316,5 +343,5 @@ int main() {
     } while (option != 0);
     
     return 0;
-}
+};
 
