@@ -174,6 +174,38 @@ void displayStudentsByGender(Stack& stack, string gender) {
     }
 }
 
+void sortStudentsByAdmissionNumber(Stack& stack) {
+    int size = stack.count();
+    Node** pointerArray = new Node*[size];
+
+    // Populate the pointer array with pointers to nodes in the stack
+    Node* temp = stack.top;
+    for (int i = 0; i < size; ++i) {
+        pointerArray[i] = temp;
+        temp = temp->next;
+    }
+
+    // Sort the pointer array based on admission numbers using bubble sort
+    for (int i = 0; i < size - 1; ++i) {
+        for (int j = 0; j < size - i - 1; ++j) {
+            if (pointerArray[j]->key > pointerArray[j + 1]->key) {
+                Node* tempNode = pointerArray[j];
+                pointerArray[j] = pointerArray[j + 1];
+                pointerArray[j + 1] = tempNode;
+            }
+        }
+    }
+
+    // Display students' properties using the sorted pointer array
+    for (int i = 0; i < size; ++i) {
+        cout << "Student Name: " << pointerArray[i]->data.getName() << ":  Admission Number: FEE3/" << pointerArray[i]->key << "/2023:" <<endl;
+        // Display other properties as needed
+    }
+
+    delete[] pointerArray;
+}
+
+
 
 
 int main() {
@@ -192,6 +224,7 @@ int main() {
         cout << "7. Clear Screen" << endl;
         cout << "8. Generate 5 students and add them to the stack" << endl;
         cout << "9. Find students of a particular gender" << endl;
+        cout << "10. Sort students by admission number" << endl;
         cin >> option;
         
         switch (option) {
@@ -335,6 +368,9 @@ int main() {
                 cin >> gender;
                 displayStudentsByGender(stack, gender);
             }    
+            case 10: {
+                sortStudentsByAdmissionNumber(stack);
+            }
             default:
                 cout << "Enter Proper Option number " << endl;
                 break;
