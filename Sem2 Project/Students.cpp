@@ -153,8 +153,8 @@ public:
                 cout << "Gender: " << temp->data.getGender() << endl;
                 cout << "Fees Balance: " << temp->data.getFeesBalance() << "shillings" << endl;
                 cout << "Units: " << endl;
-               \
-                double* scores = temp->data.getScores(); // Get the scores array
+               
+                double* scores = temp->data.getScores(); 
                 for (int i = 0; i < 11; i++) {
                     cout << unitNames[i] << ": " << scores[i] << endl;
                 }
@@ -191,7 +191,6 @@ void sortStudentsByAdmissionNumber(Stack& stack) {
     int size = stack.count();
     Node** pointerArray = new Node*[size];
 
-    // Populate the pointer array with pointers to nodes in the stack
     Node* temp = stack.top;
     for (int i = 0; i < size; ++i) {
         pointerArray[i] = temp;
@@ -208,10 +207,8 @@ void sortStudentsByAdmissionNumber(Stack& stack) {
         }
     }
 
-    // Display sorted student details
     for (int i = 0; i < size; ++i) {
         cout << "Student Name: " << pointerArray[i]->data.getName() << ":  Admission Number: FEE3/" << pointerArray[i]->key << "/2023:" << endl;
-        // Display other properties as needed
     }
 
     delete[] pointerArray;
@@ -221,7 +218,6 @@ void sortStudentsByAverage(Stack& stack) {
     int size = stack.count();
     Node** pointerArray = new Node*[size];
 
-    // Populate the pointer array with pointers to nodes in the stack
     Node* temp = stack.top;
     for (int i = 0; i < size; ++i) {
         pointerArray[i] = temp;
@@ -230,7 +226,7 @@ void sortStudentsByAverage(Stack& stack) {
 
     for (int i = 0; i < size - 1; ++i) {
         for (int j = 0; j < size - i - 1; ++j) {
-            if (pointerArray[j]->data.getAverage() > pointerArray[j + 1]->data.getAverage()) {
+            if (pointerArray[j]->data.getAverage() < pointerArray[j + 1]->data.getAverage()) {
                 Node* tempNode = pointerArray[j];
                 pointerArray[j] = pointerArray[j + 1];
                 pointerArray[j + 1] = tempNode;
@@ -238,11 +234,9 @@ void sortStudentsByAverage(Stack& stack) {
         }
     }
 
-    // Display sorted student details
+    // showing sorted student 
     for (int i = 0; i < size; ++i) {
-        cout << "Student Name: " << pointerArray[i]->data.getName() << ": Admission Number: FEE3/" << pointerArray[i]->key << "/2023:" << endl;
-        cout << "Average Score: " << pointerArray[i]->data.getAverage() << endl;
-        // Display other properties as needed
+        cout << "Student Name: " << pointerArray[i]->data.getName() << ": Admission Number: FEE3/" << pointerArray[i]->key << "/2023:  " << "Average Score: " << pointerArray[i]->data.getAverage() << endl;
     }
 
     delete[] pointerArray;
@@ -268,6 +262,7 @@ int main() {
         cout << "5. Count the number of students" << endl;
         cout << "6. Show all students and their properties" << endl;
         cout << "7. Clear Screen" << endl;
+        cout << "8. Sort students based on average marks" << endl;
         cout << "9. Find students of a particular gender" << endl;
         cout << "10. Sort students by admission number" << endl;
         cin >> option;
@@ -280,7 +275,7 @@ int main() {
                 double feesBalance;
                 double studentScores[11];
 
-                cout << "Enter the node key (between 2000 and 3000): ";
+                cout << "Enter the admission number of the student you want to remove (integer between 2000 and 3000): ";
                 cin >> nodeKey;
                 cout << "Enter the student's name: ";
                 cin.ignore(); // Ignore any remaining newline characters
@@ -291,7 +286,7 @@ int main() {
                 cin >> feesBalance;
                 cout << "Enter the student's scores for each unit: " << endl;
                 for (int i = 0; i < 11; i++) {
-                    cout << "Score for Unit " << i + 1 << ": ";
+                    cout << "Score for " <<unitNames[i]<< ": ";
                     cin >> studentScores[i];
                 }
 
@@ -393,7 +388,7 @@ int main() {
                 system("clear");
                 break;
             }
-            case8:{
+            case 8:{
                 sortStudentsByAverage(stack);
             }
             case 9: {
