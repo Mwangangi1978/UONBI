@@ -4,6 +4,7 @@ using namespace std;
 
 int main(){
     int choice;
+    double a, b, c;
     do{
         cout << "Enter the operation you want to perform:"<<endl;
         cout << "0. Terminate"<<endl;
@@ -12,19 +13,18 @@ int main(){
         cin >> choice;
 
         switch(choice){
-            case 1:{
-                double a, b, c;
-            cout << "Enter the length of the first side: ";
-            cin >> a;
-            cout << "Enter the length of the second side: ";
-            cin >> b;
+            case 1:
+                
+                cout << "Enter the length of the first side: ";
+                cin >> a;
+                cout << "Enter the length of the second side: ";
+                cin >> b;
 
-            c = sqrt(pow(a, 2) + pow(b, 2));
-            cout << "The length of the hypotenuse is: " << c << endl;
-            return 0;
-            }
-            case 2:{
-                double a, b, c;
+                c = sqrt(pow(a, 2) + pow(b, 2));
+                cout << "The length of the hypotenuse is: " << c << endl;
+                break;
+            case 2:
+                
                 cout << "Enter the length of the hypotenuse"<<endl;
                 cin >> c;
                 cout << "Enter the length of one side"<<endl;
@@ -32,10 +32,7 @@ int main(){
 
                 b = sqrt(pow(c, 2) - pow(a, 2));
                 cout << "The length of the other side is: " << b << endl;
-            }
-            default:
-                cout << "Invalid choice"<<endl;
-                return 1;
+                break;
         }
     }while(choice != 0);
 }
